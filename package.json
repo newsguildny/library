@@ -59,7 +59,7 @@
     "test": "NODE_ENV=test PORT=3001 jest --setupFiles dotenv/config --setupTestFrameworkScriptFile='./test/utils/bootstrap.js' --forceExit",
     "test:cover": "NODE_ENV=test PORT=3001 nyc --include=server/** --reporter=html --reporter=text jest test/**/*.test.js --setupFiles dotenv/config --setupTestFrameworkScriptFile='./test/utils/bootstrap.js' --forceExit",
     "lint": "eslint ./server",
-    "gcp-build": "./bin/install_customizations && npm run build && ./bin/update_gae_pkg"
+    "gcp-build": "echo $(ls node_modules/ | grep dot*) && ./bin/install_customizations && npm run build && ./bin/update_gae_pkg"
   },
   "repository": {
     "type": "git",
