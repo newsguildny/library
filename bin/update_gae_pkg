@@ -5,7 +5,7 @@ const path = require('path')
 
 const pkgPath = path.join(__dirname, '../package.json')
 // load the custom/package.json
-let customPkg = { dependencies: {} }
+let customPkg = {dependencies: {}}
 try {
   customPkg = require('../custom/package.json')
 } catch (err) {
@@ -17,7 +17,7 @@ const pkg = require(pkgPath)
 const {dotenv} = pkg.devDependencies
 
 // update the start config to use .env, add as normal dep
-pkg.scripts.start = `echo $(pwd) && echo $(ls -a) && node -r dotenv/config server/index`
+pkg.scripts.start = 'echo $(pwd) && echo $(ls -a) && echo $(npm ls dotenv) && node -r dotenv/config server/index'
 pkg.dependencies = Object.assign({}, pkg.dependencies, {dotenv}, customPkg.dependencies)
 
 // write the updates package.json to disk
