@@ -9,6 +9,7 @@
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.3",
     "deepmerge": "^4.2.2",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-promise-router": "^4.0.1",
@@ -34,7 +35,6 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "dotenv": "^8.2.0",
     "eslint": "^7.10.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
@@ -50,7 +50,7 @@
     "valid-url": "^1.0.9"
   },
   "scripts": {
-    "start": "node server/index.js",
+    "start": "echo $(ls node_modules/ | grep dot*) && node server/index.js",
     "build:main": "node-sass --include-path custom/styles --include-path styles/partials --source-map public/css/style.css.map --source-map-contents styles/style.scss public/css/style.css",
     "build:inline": "node-sass --include-path custom/styles --include-path styles/partials styles/errors.scss public/css/errors.css",
     "build": "npm run build:main && npm run build:inline",
@@ -59,7 +59,7 @@
     "test": "NODE_ENV=test PORT=3001 jest --setupFiles dotenv/config --setupTestFrameworkScriptFile='./test/utils/bootstrap.js' --forceExit",
     "test:cover": "NODE_ENV=test PORT=3001 nyc --include=server/** --reporter=html --reporter=text jest test/**/*.test.js --setupFiles dotenv/config --setupTestFrameworkScriptFile='./test/utils/bootstrap.js' --forceExit",
     "lint": "eslint ./server",
-    "gcp-build": "./bin/install_customizations && npm run build && ./bin/update_gae_pkg"
+    "gcp-build": "echo $(ls node_modules/ | grep dot*) && ./bin/install_customizations && npm run build && ./bin/update_gae_pkg"
   },
   "repository": {
     "type": "git",
